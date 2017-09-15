@@ -20,9 +20,50 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vrk-99-ZtY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="JWe-Fu-qn9"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="XEL-Z1-gBv"/>
+                                </connections>
+                            </pickerView>
+                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3g-0h-lek">
+                                <rect key="frame" x="0.0" y="349.5" width="375" height="309.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="UFx-LO-07t"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="fe1-sN-F6u"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pch-VF-ePg">
+                                <rect key="frame" x="166.5" y="318.5" width="42.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.16470588235294117" green="0.21176470588235294" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="W3g-0h-lek" firstAttribute="top" secondItem="Vrk-99-ZtY" secondAttribute="bottom" constant="20" id="2GM-Bp-FKH"/>
+                            <constraint firstAttribute="trailing" secondItem="Vrk-99-ZtY" secondAttribute="trailing" id="8Pg-va-zxY"/>
+                            <constraint firstItem="W3g-0h-lek" firstAttribute="height" secondItem="Vrk-99-ZtY" secondAttribute="height" constant="-20.5" id="BJR-Ck-1tE"/>
+                            <constraint firstItem="W3g-0h-lek" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mmx-IC-JOi"/>
+                            <constraint firstItem="Vrk-99-ZtY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="TKM-4v-kRH"/>
+                            <constraint firstItem="pch-VF-ePg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W7y-FY-F8u"/>
+                            <constraint firstItem="Vrk-99-ZtY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="e0Z-Ke-X8P"/>
+                            <constraint firstItem="pch-VF-ePg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ijc-V4-RxJ"/>
+                            <constraint firstAttribute="trailing" secondItem="W3g-0h-lek" secondAttribute="trailing" id="x4B-4n-UBy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="W3g-0h-lek" secondAttribute="bottom" constant="8" id="zVs-82-NvG"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="baseCurrencyPicker" destination="Vrk-99-ZtY" id="Jtt-yh-Omf"/>
+                        <outlet property="rateLabel" destination="pch-VF-ePg" id="vh8-Uz-xg2"/>
+                        <outlet property="requiredCurrencyPicker" destination="W3g-0h-lek" id="SVU-CV-5OK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

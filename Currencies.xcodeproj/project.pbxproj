@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1472951F6AE25F008563D4 /* SimpleNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1472941F6AE25F008563D4 /* SimpleNetworking.swift */; };
+		6A1472971F6AE75F008563D4 /* Fixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1472961F6AE75F008563D4 /* Fixer.swift */; };
 		A58404431F6AA9C400123BC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58404421F6AA9C400123BC7 /* AppDelegate.swift */; };
 		A58404451F6AA9C400123BC7 /* CurrenciesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58404441F6AA9C400123BC7 /* CurrenciesController.swift */; };
 		A58404481F6AA9C400123BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58404461F6AA9C400123BC7 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A1472941F6AE25F008563D4 /* SimpleNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNetworking.swift; sourceTree = "<group>"; };
+		6A1472961F6AE75F008563D4 /* Fixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixer.swift; sourceTree = "<group>"; };
 		A584043F1F6AA9C400123BC7 /* Currencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Currencies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58404421F6AA9C400123BC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A58404441F6AA9C400123BC7 /* CurrenciesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesController.swift; sourceTree = "<group>"; };
@@ -35,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A1472981F6AE766008563D4 /* Fixer.io */ = {
+			isa = PBXGroup;
+			children = (
+				6A1472961F6AE75F008563D4 /* Fixer.swift */,
+				6A1472941F6AE25F008563D4 /* SimpleNetworking.swift */,
+			);
+			path = Fixer.io;
+			sourceTree = "<group>";
+		};
 		A58404361F6AA9C400123BC7 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +67,7 @@
 		A58404411F6AA9C400123BC7 /* Currencies */ = {
 			isa = PBXGroup;
 			children = (
+				6A1472981F6AE766008563D4 /* Fixer.io */,
 				A58404421F6AA9C400123BC7 /* AppDelegate.swift */,
 				A58404441F6AA9C400123BC7 /* CurrenciesController.swift */,
 				A58404461F6AA9C400123BC7 /* Main.storyboard */,
@@ -137,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1472971F6AE75F008563D4 /* Fixer.swift in Sources */,
+				6A1472951F6AE25F008563D4 /* SimpleNetworking.swift in Sources */,
 				A58404451F6AA9C400123BC7 /* CurrenciesController.swift in Sources */,
 				A58404431F6AA9C400123BC7 /* AppDelegate.swift in Sources */,
 			);
@@ -302,6 +318,7 @@
 				A58404531F6AA9C400123BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

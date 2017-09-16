@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SimpleNetworking {
+class Networking {
 
     public enum Method: String {
         case get = "GET"

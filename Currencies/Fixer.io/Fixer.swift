@@ -12,7 +12,7 @@ typealias Currency = String
 typealias Rate = Double
 typealias RateList = [Currency: Rate]
 
-class Fixer: SimpleNetworking {
+class Fixer: Networking {
     
     let baseURL = "https://api.fixer.io/latest"
     

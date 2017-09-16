@@ -8,33 +8,46 @@
 
 import UIKit
 
-class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var baseCurrencyPicker: UIPickerView!
     @IBOutlet weak var requiredCurrencyPicker: UIPickerView!
+    
+    @IBOutlet weak var indicator: Indicator!
+    
     @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var valueField: UITextField!
     
     enum CurrencyPicker: Int {
         case base     = 0
         case required = 1
     }
     
-    var currencies: [Currency] = []
+    var baseCurrencies: [Currency] = []
     var requiredCurrencies: [Currency] = []
+    
     var rates: RateList = [:]
-    var baseCurrency: Currency = "USD"
+    var baseCurrency: Currency = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        indicator.start()
         
         Fixer.shared.getCurrencies(success: { (currencies) in
-            self.currencies = currencies
+            
+            self.indicator.stop()
+            
+            self.baseCurrencies = currencies
+            
             DispatchQueue.main.async {
                 self.baseCurrencyPicker.reloadAllComponents()
+                self.baseCurrency = currencies[self.baseCurrencyPicker.selectedRow(inComponent: 0)]
+                self.updateRecuiredCurrencies(base: self.baseCurrency)
             }
-            print(currencies)
+            
         }) { (error) in
-            print("Load error")
+            print("Load currencies error")
         }
     }
     
@@ -50,7 +63,7 @@ class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerVi
         
         switch pickerView.tag {
         case CurrencyPicker.base.rawValue:
-            count = currencies.count
+            count = baseCurrencies.count
             break
         case CurrencyPicker.required.rawValue:
             count = rates.count
@@ -69,7 +82,7 @@ class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerVi
         
         switch pickerView.tag {
         case CurrencyPicker.base.rawValue:
-            let currency = currencies[row]
+            let currency = baseCurrencies[row]
             attributedString = NSMutableAttributedString(string: currency, attributes: attributes)
             break
         case CurrencyPicker.required.rawValue:
@@ -88,7 +101,7 @@ class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerVi
         switch pickerView.tag {
         case CurrencyPicker.base.rawValue:
             let row = pickerView.selectedRow(inComponent: 0)
-            baseCurrency = self.currencies[row]
+            baseCurrency = self.baseCurrencies[row]
             updateRecuiredCurrencies(base: baseCurrency)
             return
         case CurrencyPicker.required.rawValue:
@@ -100,22 +113,64 @@ class CurrenciesController: UIViewController, UIPickerViewDataSource, UIPickerVi
         }
     }
     
+    // MARK: UITextField
+    
+    @IBAction func valueChanged(_ sender: UITextField) {
+        updateRateLabel(currency: requiredCurrencies[requiredCurrencyPicker.selectedRow(inComponent: 0)])
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        updateRateLabel(currency: requiredCurrencies[requiredCurrencyPicker.selectedRow(inComponent: 0)])
+        textField.resignFirstResponder()
+        
+        return true
+    }
+
+    
     // MARK: Helpers
     
     func updateRecuiredCurrencies(base: Currency) {
+        
+        indicator.start()
+        
         Fixer.shared.getRates(base: base, success: { (rates) in
+            
+            self.indicator.stop()
+            
             self.rates = rates
             self.requiredCurrencies = Array(rates.keys)
+            
             DispatchQueue.main.async {
                 self.requiredCurrencyPicker.reloadAllComponents()
+                self.updateRateLabel(currency: self.requiredCurrencies[self.requiredCurrencyPicker.selectedRow(inComponent: 0)])
             }
+            
         }) { (error) in
             print("Load rates error")
         }
     }
     
     func updateRateLabel(currency: Currency) {
-        rateLabel.text = "\(rates[currency] ?? 0)"
+        
+        var value: Rate?
+        if let string = valueField.text {
+            
+            value = Double(string)
+            
+            if value == nil {
+                value = 1
+                valueField.text = "1"
+            }
+            
+        } else {
+            value = 1
+            valueField.text = "1"
+        }
+        
+        let rateValue = rates[currency] ?? 0
+        let incomeValue = value ?? 1.0
+        rateLabel.text = "\(rateValue * incomeValue)"
     }
 }
 
